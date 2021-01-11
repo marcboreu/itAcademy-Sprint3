@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercici Lletres Repetides</title>
+    <!-- MarcBoreu JavaScript -->
+    <script type="text/javascript">
+
+        function fase1() {
+            const nameTest = ["M", "A", "R", "C"]; // Const for test
+            for (i = 0; i < nameTest.length; i++) {
+                console.log(nameTest[i]);
+                document.getElementById("console1").innerHTML += `<li> ${nameTest[i]} </li>`;
+            }
+        }
+
+        function fase2() {
+            let nameInput = document.getElementById("Fase2").value;
+            nameInput = nameInput.split(""); // Cut string user by character and create array
+            let vocalPattern = /[aeiouAEIOU]+/g; // REGEX VOCALS
+            console.log(`Partim del NOM: ${nameInput}`);
+            document.getElementById("console2").innerHTML += `Partim del NOM: ${nameInput}`;
+            for (let i = 0; i < nameInput.length; i++) {
+                if (!Number.isNaN(parseInt(nameInput[i]))) {
+                    console.log("Els noms de persones no contenen NÚMEROS: " + (nameInput[i]));
+                    document.getElementById("console2").innerHTML += `<li> "Els noms de persones no contenen NÚMEROS: ${nameInput[i]} </li>`;
+                } else if (vocalPattern.test(nameInput[i])) {
+                    console.log("He trobat la VOCAL: " + (nameInput[i]));
+                    document.getElementById("console2").innerHTML += `<li> "He trobat la VOCAL: " ${nameInput[i]} </li>`;
+                } else {
+                    console.log("He trobat la CONSONANT: " + (nameInput[i]));
+                    document.getElementById("console2").innerHTML += `<li> "He trobat la CONSONANT: " ${nameInput[i]} </li>`;
+                }
+            }
+        }
+
+        function fase3() {
+            const nameTest = ["M", "A", "R", "C"]; // Const for test
+            let counter = 0;
+            let letter;
+            let name = new Map();
+            for (let i = 0; i < nameTest.length; i++) {
+                letter = nameTest[i]
+                for (let j = 0; j < nameTest.length; j++) {
+                    if (nameTest[j] == nameTest[i]) {
+                        counter++;
+                    }
+                }
+                name.set(nameTest[i], counter) // Inject to object map, stringInput position of i and value of counter
+                counter = 0; // Reset counter
+            }
+            console.log(name);
+        }
+
+        function fase3v1() {
+            let stringInput = document.getElementById("Fase3").value;
+            stringInput = stringInput.split("");
+            let counter = 0;
+            let letters = new Array;
+            let name = new Map;
+            //let array = new Array;
+            for (let i = 0; i < stringInput.length; i++) {
+                letters.push(stringInput[i])
+                for (let j = 0; j < stringInput.length; j++) {
+                    if (stringInput[j] == stringInput[i]) {
+                        counter++;
+                    }
+                }
+                name.set(stringInput[i], counter) // Inject to object map, stringInput position of i and value of counter
+                counter = 0; // Reset counter
+            }
+            console.log(name);
+            document.getElementById("console3v1").innerHTML = letters;
+        }
+
+        function fase4() {
+            const nameTest = ["M", "A", "R", "C"]; // Const for name
+            const surnameTest = ["B", "O", "R", "E", "U"]; // Const for surname
+            let fullName = new Array;
+            nameTest.push(" "); // Upload space to last character of array name
+            fullName = nameTest.concat(surnameTest);
+            console.log(fullName);
+            document.getElementById("console4").innerHTML = fullName;
+        }
+
+        function fase4v1() {
+            let stringInputName = document.getElementById("Fase4nom").value;
+            stringInputName = stringInputName.split("");
+            let stringInputSurname = document.getElementById("Fase4cognom").value;
+            stringInputSurname = stringInputSurname.split("");
+            let fullName = new Array;
+            stringInputName.push(" ");
+            fullName = stringInputName.concat(stringInputSurname);
+            console.log(fullName);
+            document.getElementById("console4v1").innerHTML = fullName;
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Exercici Lletres Repetides</h1>
+
+    <h2>Fase 1</h2>
+    <p> nom de prova per consola (const = "MARC")</p>
+    <input type='button' onclick="fase1()" Value='Executar' />
+    <p id="console1"></p>
+
+    <h2>Fase 2</h2>
+    <p>Introdueix el nom amb majuscules, minuscules, i/o números: </p>
+    <input type="text" id="Fase2" style="color:black;" placeholder="Escriu el nom aquí:" />
+    <input type='button' onclick="fase2()" Value='Executar' />
+    <p id="console2"></p>
+
+    <h2>Fase 3</h2>
+    <p>Introdueix el nom amb majuscules, minuscules, i/o números: </p>
+    <input type='button' onclick="fase3()" Value='Executar sense introduir nom' />
+    <input type="text" id="Fase3" style="color:black;" placeholder="Escriu el nom aquí:" />
+    <input type='button' onclick="fase3v1()" Value='Executar introduint nom' />
+    <p id="console3"></p>
+    <p id="console3v1"></p>
+
+    <h2>Fase 4</h2>
+    <p>Introdueix el nom i cognom amb majuscules, minuscules, i/o números: </p>
+    <input type='button' onclick="fase4()" Value='Executar sense introduir nom ni cognom' />
+    <input type="text" id="Fase4nom" style="color:black;" placeholder="Escriu el nom aquí:" />
+    <input type="text" id="Fase4cognom" style="color:black;" placeholder="Escriu el nom aquí:" />
+    <input type='button' onclick="fase4v1()" Value='Executar introduint nom i cognom' />
+    <p id="console4"></p>
+    <p id="console4v1"></p>
+
+
+</body>
+
+</html>
